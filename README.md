@@ -13,3 +13,5 @@
 
 This is where users can share their scripts for the scripted widgets.
 Every script should be inside it's own folder, containing a `README.md` and the author name in the script.
+
+To find out more about the scripted widget you can check out or [docs](https://docs.noctalia.dev/v5/bar/scripted-widgets/)
