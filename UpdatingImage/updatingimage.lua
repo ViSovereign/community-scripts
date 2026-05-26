@@ -36,6 +36,7 @@ barWidget.define({
             label = "Image width",
             default = defaultImageWidth,
             min = 1,
+            max = 1000,
         },
         {
             key = "image_height",
@@ -43,6 +44,7 @@ barWidget.define({
             label = "Image height",
             default = defaultImageHeight,
             min = 1,
+            max = 1000,
         },
         {
             key = "update_interval",
@@ -51,6 +53,7 @@ barWidget.define({
             description = "How often to check for updates and run the command line (in milliseconds).",
             default = defaultUpdateInterval,
             min = 100,
+            max = 1000000,
         },
         {
             key = "click_action",
