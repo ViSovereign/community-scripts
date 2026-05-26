@@ -27,6 +27,7 @@ barWidget.define({
             label = "Clock image width",
             default = defaultImageWidth,
             min = 1,
+            max = 1000,
         },
         {
             key = "image_height",
@@ -34,6 +35,7 @@ barWidget.define({
             label = "Clock image height",
             default = defaultImageHeight,
             min = 1,
+            max = 1000,
         },
     }
 })
