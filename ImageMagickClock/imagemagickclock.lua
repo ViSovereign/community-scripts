@@ -110,4 +110,12 @@ function update()
     drawClockFace(nextTimestamp)
 end
 
+function onClick()
+    noctalia.runAsync("noctalia msg panel-toggle control-center calendar", function(result)
+        if result.exitCode ~= 0 then
+            print("Error opening URL: " .. result.stderr .. " (command: noctalia msg panel-toggle control-center calendar) " .. "output: " .. result.stdout)
+        end
+    end)
+end
+
 drawClockFace(os.time())
