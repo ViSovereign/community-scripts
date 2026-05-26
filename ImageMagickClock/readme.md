@@ -9,7 +9,7 @@ Displays a custom clock drawn using ImageMagick.
 ## Install
 
 1. Save this script to a directory.
-2. Add this scripted-widget into your noctalia settings.toml.
+2. Add this scripted-widget to your noctalia settings.toml.
 3. It should now be a selectable widget.
 
 ### Add this scripted-widget to settings.toml
