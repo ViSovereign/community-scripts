@@ -67,7 +67,6 @@ function drawClockFace(timestamp)
     -- print("Running command: " .. commandLine)
 
     noctalia.runAsync(commandLine, function(result)
-        generatingClockFace = false
         if result.exitCode == 0 then
             if nextClockFacePath then
                 noctalia.runAsync("rm '" .. nextClockFacePath .. "'", function(result)
@@ -77,17 +76,17 @@ function drawClockFace(timestamp)
                 end)
             end
             nextClockFacePath = outputFilePath
-            nextClockFaceTimestamp = timestamp
         else
             print("Error generating clock face: " .. result.stderr .. " (command: " .. commandLine .. ") " .. "output: " .. result.stdout)
             nextClockFacePath = nil
-            nextClockFaceTimestamp = nil
         end
+        nextClockFaceTimestamp = timestamp
+        generatingClockFace = false
     end)
 end
 
 function update()
-    if nextClockFacePath == nil or currentClockFacePath ~= nil and (os.time() < nextClockFaceTimestamp) then
+    if generatingClockFace or nextClockFaceTimestamp and os.time() < nextClockFaceTimestamp then
         return
     end
 
@@ -97,16 +96,20 @@ function update()
                 print("Error removing old clock face: " .. result.stderr .. " (command: rm " .. currentClockFacePath .. ") " .. "output: " .. result.stdout)
             end
         end)
+        currentClockFacePath = nil
     end
-    currentClockFacePath = nextClockFacePath
-    nextClockFacePath = nil
-    nextClockFaceTimestamp = nil
-    barWidget.setImage(currentClockFacePath, false, imageWidth, imageHeight)
+
+    if nextClockFacePath then
+        currentClockFacePath = nextClockFacePath
+        nextClockFacePath = nil
+        nextClockFaceTimestamp = nil
+        barWidget.setImage(currentClockFacePath, false, imageWidth, imageHeight)
+    end
 
     local timestamp = os.time()
     local time = os.date("*t", timestamp)
     local nextTimestamp = timestamp - time.sec + 60
-    -- print("Scheduling next clock face update at " .. os.date("%H:%M:%S", nextTimestamp))
+    -- print("Drawing next clock face at " .. os.date("%H:%M:%S", nextTimestamp))
     drawClockFace(nextTimestamp)
 end
 
