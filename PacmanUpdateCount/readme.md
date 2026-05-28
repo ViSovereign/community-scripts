@@ -1,10 +1,10 @@
 # Pacman Update Check
 
-Shows the number of updates available using 'checkupdates' and 'paru' commands. 
+Shows the number of updates from pacman and the AUR 
 
 ## Requires
 
-- paru
+- paru or yay
 - checkupdates
 
 ## Install
@@ -19,11 +19,20 @@ Usually located '~/.local/state/noctalia/settings.toml'
 
 ```
 [widget.pacmanupdatecount]
-hot_reload = true
-script = "/path/to/script/pacmanupdatecount.lua"
+script = "/path/to/scripts/pacmanupdatecount.lua"
 type = "scripted"
 update_interval = 60
+glyph = "packages"
+aur_helper = "paru"
+color_bool = false
+color_count = 100
+color_is = "error"
 ```
+## Click Buttons
+
+Left click will refresh the update count
+Middle click will open a terminal showing the package versions.
+Right click will 
 
 ## IPC
 
