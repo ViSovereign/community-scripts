@@ -170,7 +170,7 @@ function onMiddleClick()
 end
 
 function onRightClick()
-    local rightCommand = echoStringCreation() .. " && " .. "sudo pacman -Syu" .. " && " .. pauseStringCreation()
+    local rightCommand = echoStringCreation() .. " && " .. aur_helper .. " && " .. pauseStringCreation()
     noctalia.runInTerminal(rightCommand)
 end
 
